@@ -30,7 +30,7 @@ These books cover a range of topics such as data engineering, ETL processes, dat
   Book walks through full process to dimensional data modeling - from understanding the business problem to choosing the 
   dimensions and identifying numeric facts.
   
-  ## 4. Star Schema The Complete Reference
+## 4. Star Schema The Complete Reference
 - Author: Christopher Adamson
 - Description: The definitive guide to dimensional design for data warehouse. 
 - Key Takeaways: The book outlined the best practices of dimensional design:
