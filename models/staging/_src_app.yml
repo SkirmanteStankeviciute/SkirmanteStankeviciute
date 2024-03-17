@@ -1,0 +1,114 @@
+version: 2
+
+sources:
+  - name: app
+    database: logical-bolt-417313
+    schema: raw_app  
+    tables:
+      - name: users
+        description: Raw data containing basic information about the user from Profile section.
+        columns:
+          - name: user_id
+            description: Unique user identifier.
+            tests:
+              - not_null
+              - unique
+          - name: birthday
+            description: User's birthday.
+          - name: country_code
+            description: Country of origin of the user.
+          - name: city
+            description: Resident city of the user.
+          - name: default_currency 
+            description: Used currency by the user.
+          - name: language
+            description: language of the user.
+          - name: registration_type 
+            description: Channel of registration for the user.
+
+      - name: brands
+        description: Raw data summarizing brand information on the app.
+        columns:
+          - name: brand_id
+            description: Brand identifier
+            tests:
+              - not_null
+              - unique
+          - name: brand 
+            description: Brand name.
+          - name: num_listings
+            description: number of listings of that brand in a specific timeframe.
+          - name: num_purchases 
+            description: number of purchases of that brand in a specific timeframe.
+          - name: num_followers
+            description: number of followers of that brand in a specific timeframe.
+      
+      - name: event_item_creation
+        description: Raw Item Creation event data.
+        columns:
+        - name: time
+          description: Unix timestamp of event.
+        - name: item_id
+          description: Item identifier.
+        - name: user_id
+          description: User identifier.
+          tests:
+            - not_null
+        - name: platform
+          description: Platform used to execute event.
+        - name: initial_item_price.
+          description: Initial price of the item set by the user.
+        - name: package_size_code
+          description: Size required for shipping.
+        - name: brand_id
+          description: Item brand identifier.
+        - name: category
+          description: Item category.
+        - name: status
+          description: Condition of the item.
+        - name: size
+          description: Item size.
+
+      - name: event_item_sale
+        description: Raw Item Sale event data.
+        columns:
+        - name: time
+          description: Unix timestamp of event.
+        - name: transaction_id
+          description: Transaction identifier.
+          tests:
+            - not_null
+            - unique
+        - name: successful_transaction
+          description: Boolean if transaction was successful.
+        - name: item_id
+          description: Item identifier.
+          tests:
+            - not_null
+            - unique
+        - name: buyer_id
+          description: Buying user identifier.
+          tests:
+            - not_null        
+        - name: sale_price
+          description: Price for which item has been sold.
+          tests:
+            - not_null
+
+      - name: event_shipping
+        description: Raw Item Sale event data.
+        columns:
+        - name: shipping_id
+          description: Shipment identifier.
+          tests: 
+            - not_null
+        - name: transaction_id
+          description: Transaction identifier.
+          tests:
+            - not_null
+        - name: carrier
+          description: Name of shipping carrier.
+        - name: time
+          description: Unix timestamp of event.
+        - name: event_type
+          description: type of shipping event.
